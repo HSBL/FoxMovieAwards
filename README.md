@@ -1,2 +1,2 @@
 # FoxMovieAwards
-Fox Movie Awards
+Folder config sama config.json nya bikin sendiri yaa, ku gitignore.
