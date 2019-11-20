@@ -1,6 +1,33 @@
 <%- include('./partial/head') %>
 <%- include('./components/nav', {where: null}) %>
 <div class="content-center">
-    <h1>Hello World</h1>
+    <h1>Welcome, Current Standing:</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th>Nomination</th>
+                <th>Movie Title</th>
+                <th>Total Votes</th>
+            </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <td>Best Picture</td>
+                        <td>EndGame</td>
+                        <td>999</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Best Soundtrack</td>
+                        <td>Joker</td>
+                        <td>777</td>
+                        
+                    </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>
 <%- include('./partial/foot') %>

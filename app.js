@@ -14,4 +14,11 @@ app.get('/', (req, res) => {
 app.use('/voter', voterRouter)
 
 
+// untuk dipindah ke router dan controler
+app.get('/movies', (req, res) => {
+    res.render('movies/index')
+})
+
+
+
 app.listen(PORT, () => console.log(`heard on ${PORT}`))
