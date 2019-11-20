@@ -1,6 +1,8 @@
 const express = require('express')
 const voterRouter = express.Router()
 const VoterController = require('../controllers/VoterController')
+// const multer = require('multer');
+// const upload = multer({dest: 'uploads/'})
 
 voterRouter.get('/register', VoterController.getRegister)
 voterRouter.post('/register', VoterController.postRegister)

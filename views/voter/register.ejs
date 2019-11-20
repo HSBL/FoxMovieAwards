@@ -1,6 +1,5 @@
 <%- include('../partial/head') %>
-<%- include('../components/nav', {where: 'register'}) %>
-<form class="w-50 content-center" action="" method="POST">
+<form class="w-50 content-center" action="" method="POST" enctype="multipart/form-data">
     <% if (type) { %>
         <%- include('../components/validationMsg') %>
     <% } %>
@@ -23,6 +22,10 @@
             <option value="Film Maker">Film Maker</option>
             <option value="Movie Goers">Movie Goers</option>
         </select> 
+    </div>
+    <div class="form-group">
+        <label for="profilpic">Upload profil picture</label>
+        <input type="file" class="" name="profilpic" id="profilpic">
     </div>
     <br>
     <input type="submit" class="btn btn-primary" value="Register">

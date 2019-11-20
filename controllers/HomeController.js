@@ -5,9 +5,9 @@ class HomeController {
         Voter.findOne({where:{isLogin : 1}})
         .then(user =>{
             if(!user){
-                res.render('index', {logged: false});
+                res.render('index', {logged: false, user : null});
             } else {
-                res.render('index', {logged: true});
+                res.render('index', {logged: true, user});
             }
         })
     }
