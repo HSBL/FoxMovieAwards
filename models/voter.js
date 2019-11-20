@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Voter extends Model {}
   Voter.init({
     name: DataTypes.STRING,
+    path: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       validate: {
