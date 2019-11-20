@@ -6,5 +6,8 @@ voterRouter.get('/register', VoterController.getRegister)
 voterRouter.post('/register', VoterController.postRegister)
 voterRouter.get('/login', VoterController.getLogin)
 voterRouter.post('/login', VoterController.postLogin)
+voterRouter.get('/:id/edit', VoterController.getEdit);
+voterRouter.post('/:id/edit', VoterController.postEdit);
+voterRouter.post('/delete/:id', VoterController.delete);
 
 module.exports = voterRouter

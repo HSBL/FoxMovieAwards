@@ -19,6 +19,33 @@ class VoterController {
     static postLogin(req, res) {
         res.send(req.body)
     }
+    
+    static getEdit(req, res) {
+        Voter.findByPk(req.params.id)
+        .then(voter => {
+            res.render('voter/edit', {type:null, voter})
+        })
+        .catch(err => res.send(err))
+    }
+
+    static postEdit(req, res) {
+        Voter.update({email: null}, {where: {id: req.params.id}})
+        .then(() => {
+            return Voter.update(req.body, {where: {id: req.params.id}})
+        })
+        .then(() => {
+            res.redirect('/');
+        })
+        .catch(err => res.send(err))
+    }
+
+    static delete(req,res) {
+        Voter.destroy({where: {id: req.params.id}})
+        .then(() => {
+            res.redirect('/');
+        })
+        .catch(err => res.send(err));
+    }
 }
 
 module.exports = VoterController
