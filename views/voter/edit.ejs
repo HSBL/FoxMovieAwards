@@ -7,15 +7,15 @@
     
     <div class="form-group">
         <label for="username">Voter Name</label>
-        <input type="text" class="form-control" name="name" id="username" value="">
+        <input type="text" class="form-control" name="name" id="username" value="<%= voter.name %>">
     </div>
     <div class="form-group">
         <label for="email">Email :</label>
-        <input type="text" class="form-control" name="email" id="email" value="">
+        <input type="text" class="form-control" name="email" id="email" value="<%= voter.email %>">
     </div>
     <div class="form-group">
         <label for="password">Password :</label>
-        <input type="password" class="form-control" name="password" id="password" value="">
+        <input type="password" class="form-control" name="password" id="password" value="<%= voter.password %>">
     </div>
     <div class="form-group">
         <label for="">Specify Your Role :</label>
@@ -25,9 +25,9 @@
         </select> 
     </div>
     <br>
-    <input type="submit" class="btn btn-primary" value="Register">
+    <input type="submit" class="btn btn-primary" value="Save">
     <br>
-    <a href="">
+    <a href="/delete/<%= voter.id %>">
         <button class="btn btn-secondary">Delete Account</button>
     </a>
 </form>

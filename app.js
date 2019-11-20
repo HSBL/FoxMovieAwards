@@ -3,6 +3,7 @@ const app = express()
 const PORT = 3000
 
 const voterRouter = require('./routes/voterRoutes');
+const movieRouter = require('./routes/movieRoutes');
 const helper = require('./helpers/helpers');
 
 app.use('/public', express.static('public'));
@@ -13,13 +14,14 @@ app.locals.helper = helper;
 app.get('/', (req, res) => {
     res.render('index')
 })
-app.use('/voter', voterRouter)
+app.use('/voter', voterRouter);
+app.use('/movies', movieRouter);
 
 
 // untuk dipindah ke router dan controler
-app.get('/movies', (req, res) => {
-    res.render('movies/index')
-})
+// app.get('/movies', (req, res) => {
+//     res.render('movies/index')
+// })
 
 
 
