@@ -12,7 +12,23 @@ module.exports = (sequelize, DataTypes) => {
     CategoryId: DataTypes.INTEGER,
     MovieId: DataTypes.INTEGER,
     VoterId: DataTypes.INTEGER
-  }, { sequelize, modelName: 'Vote'});
+  }, { 
+    hooks: {
+      beforeCreate: (instance, options) => {
+        return Vote.findOne({
+          where: {
+            CategoryId: instance.CategoryId,
+            MovieId: instance.MovieId
+          }
+        })
+        .then(vote => {
+          if (vote) {
+            throw new Error('You have already voted for that category')
+          }
+        })
+      }
+    },
+    sequelize, modelName: 'Vote'});
   Vote.associate = function(models) {
     // associations can be defined here
   };

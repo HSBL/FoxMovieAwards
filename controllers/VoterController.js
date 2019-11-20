@@ -1,4 +1,5 @@
-const Voter = require('../models').Voter
+const Voter = require('../models').Voter;
+const Vote = require('../models').Vote;
 
 class VoterController {
     static getRegister(req, res) {
@@ -49,6 +50,22 @@ class VoterController {
             res.redirect('/');
         })
         .catch(err => res.send(err));
+    }
+
+    static vote(req, res) {
+        Voter.findOne({where: {isLogin: 1}})
+        .then(voter => {
+            return Vote.create({
+                CategoryId: req.query.CategoryId,
+                MovieId: req.query.MovieId,
+                VoterId: voter.id
+            })
+        })
+        .then(() => {
+            res.redirect('/movies')
+        })
+        .catch(err => res.send(err.message));
+        
     }
 }
 

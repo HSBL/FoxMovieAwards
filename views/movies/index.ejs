@@ -12,36 +12,19 @@
             </thead>
             <tbody>
                 
-                    <tr>
-                        <td>EndGame</td>
-                        <td><iframe width="560" height="315" src="https://www.youtube.com/embed/TcMBFSGVi1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-                        <td>
-                            <ul>
-                                <li style="list-style: none;"><a href="">Best Picture</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Joker</td>
-                        <td><iframe width="560" height="315" src="https://www.youtube.com/embed/zAGVQLHvwOY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-                        <td>
-                            <ul>
-                                <li style="list-style: none;"><a href="">Best Picture</a></li>
-                                <li style="list-style: none;"><a href="">Best Soundtrack</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>Spiderman</td>
-                        <td><iframe width="560" height="315" src="https://www.youtube.com/embed/tg52up16eq0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-                        <td>
-                            <ul>
-                                <li style="list-style: none;"><a href="">Best Soundtrack</a></li>
-                            </ul>
-                        </td>
-                    </tr>
+                    <% for (let i = 0; i < movies.length; i++) { %>
+                        <tr>
+                            <td><%= movies[i].title %></td>
+                            <td><iframe width="560" height="315" src="https://www.youtube.com/embed/<%= movies[i].url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                            <td>
+                                <ul>
+                                    <% for (let j = 0; j < movies[i].Categories.length; j++) { %>
+                                    <li style="list-style: none;"><a href="/voter?CategoryId=<%= movies[i].Categories[j].id %>&MovieId=<%= movies[i].id %>"><%= movies[i].Categories[j].name %></a></li>
+                                    <% } %>
+                                </ul>
+                            </td>
+                        </tr>
+                    <% } %>
                 
             </tbody>
         </table>
