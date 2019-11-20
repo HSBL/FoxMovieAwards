@@ -1,0 +1,26 @@
+<%- include('../partial/head') %>
+<%- include('../components/nav', {where: 'register'}) %>
+<form class="w-50 content-center" action="" method="POST">
+    <div class="form-group">
+        <label for="username">Voter Name</label>
+        <input type="text" class="form-control" name="name" id="username" placeholder="Enter Your Name">
+    </div>
+    <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="password">Password :</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+    </div>
+    <div class="form-group">
+        <label for="">Specify Your Role :</label>
+        <select name="role">
+            <option value="Film Maker">Film Maker</option>
+            <option value="Movie Goers">Movie Goers</option>
+        </select> 
+    </div>
+    <br>
+    <input type="submit" class="btn btn-primary" value="Register">
+</form>
+<%- include('../partial/foot') %>
