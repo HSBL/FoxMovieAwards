@@ -1,6 +1,10 @@
 <%- include('../partial/head') %>
 <%- include('../components/nav', {where: 'register'}) %>
 <form class="w-50 content-center" action="" method="POST">
+    <% if (type) { %>
+        <%- include('../components/validationMsg') %>
+    <% } %>
+    
     <div class="form-group">
         <label for="username">Voter Name</label>
         <input type="text" class="form-control" name="name" id="username" placeholder="Enter Your Name">
