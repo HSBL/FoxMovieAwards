@@ -17,7 +17,11 @@ class VoterController {
         res.render('voter/login')
     }
     static postLogin(req, res) {
-        res.send(req.body)
+        Voter.update({isLogin: 1}, {where: {email: req.body.email}})
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => res.send(err));
     }
     
     static getEdit(req, res) {
