@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Movie.associate = function(models) {
     // associations can be defined here
     Movie.belongsToMany(models.Category, {through : models.CategoryMovies})
+    Movie.hasMany(models.Vote)
   };
   return Movie;
 };
