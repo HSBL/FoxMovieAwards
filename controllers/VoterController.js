@@ -1,16 +1,16 @@
 const Voter = require('../models').Voter;
 const Vote = require('../models').Vote;
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'})
 
 class VoterController {
     static getRegister(req, res) {
         res.render('voter/register', {type: null})
     }
     static postRegister(req, res) {
-        // res.send(req.file)
-        req.body.path = req.file.path;
+        req.body.path = req.file.filename;
         Voter.create(req.body)
             .then(() => {
-                // res.render('voter/register', {type: 'success', msg: ''})
                 res.redirect('/')
             })
             .catch(err => {
