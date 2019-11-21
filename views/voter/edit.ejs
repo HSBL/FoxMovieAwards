@@ -1,5 +1,5 @@
 <%- include('../partial/head') %>
-<%- include('../components/nav', {where: 'voter'}) %>
+<%- include('../components/nav', {where: 'voter', logged: true, user: voter}) %>
 <form class="w-50 content-center" action="" method="POST">
     <% if (type) { %>
         <%- include('../components/validationMsg') %>

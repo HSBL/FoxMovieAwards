@@ -6,6 +6,14 @@ const voterRouter = require('./routes/voterRoutes');
 const movieRouter = require('./routes/movieRoutes');
 const homeRouter = require('./routes/homeRoutes');
 const helper = require('./helpers/helpers');
+const session = require('express-session')
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}))
+
 
 
 app.use('/public', express.static('public'));

@@ -6,7 +6,7 @@ class MovieController {
         Movie.findAll({include: [{model: Category}]})
         .then(movies => {
             // res.send(movies)
-            res.render('movies/index', {movies});
+            res.render('movies/index', {movies, user: req.session.voter});
         })
     }
 }

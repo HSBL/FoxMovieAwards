@@ -2,6 +2,8 @@ const Voter = require('../models').Voter;
 const Vote = require('../models').Vote;
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'})
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 class VoterController {
     static getRegister(req, res) {
@@ -9,23 +11,45 @@ class VoterController {
     }
     static postRegister(req, res) {
         req.body.path = req.file.filename;
-        Voter.create(req.body)
-            .then(() => {
-                res.redirect('/')
-            })
-            .catch(err => {
-                res.render('voter/register', {type: 'error', msg: err})
-            })
+
+        bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+            if(err => res.send(err))
+            req.body.password = hash
+            Voter.create(req.body)
+                .then(() => {
+                    // res.render('voter/register', {type: 'success', msg: ''})
+                    res.redirect('/')
+                })
+                .catch(err => {
+                    res.render('voter/register', {type: 'error', msg: err})
+                })
+          });
     }
     static getLogin(req, res) {
         res.render('voter/login')
     }
     static postLogin(req, res) {
-        Voter.update({isLogin: 1}, {where: {email: req.body.email}})
-        .then(() => {
-            res.redirect('/')
-        })
-        .catch(err => res.send(err));
+
+        Voter.findOne({where: {email: req.body.email}})
+            .then(voter =>{
+                if(!voter){
+                    res.send("ga ada user")
+                } else {
+                    bcrypt.compare(req.body.password, voter.password, function(err, login) {
+                        // res == true
+                        if(err){
+                            res.send(err)
+                        } else if(!login){
+                            res.send("password salah")
+                        } else {
+                            req.session.voter = voter;
+                            // console.log(req.session.voter);
+                            res.redirect('/')
+                        }
+                    });
+                }
+            })
+            .catch(err => res.send(err));
     }
     
     static getEdit(req, res) {
@@ -56,19 +80,15 @@ class VoterController {
     }
 
     static vote(req, res) {
-        Voter.findOne({where: {isLogin: 1}})
-        .then(voter => {
-            return Vote.create({
-                CategoryId: req.query.CategoryId,
-                MovieId: req.query.MovieId,
-                VoterId: voter.id
-            })
+        Vote.create({
+            CategoryId: req.query.CategoryId,
+            MovieId: req.query.MovieId,
+            VoterId: req.session.voter.id
         })
         .then(() => {
             res.redirect('/movies')
         })
         .catch(err => res.send(err.message));
-        
     }
 }
 
