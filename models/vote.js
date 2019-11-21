@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         return Vote.findOne({
           where: {
             CategoryId: instance.CategoryId,
-            MovieId: instance.MovieId
+            VoterId: instance.VoterId
           }
         })
         .then(vote => {
@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize, modelName: 'Vote'});
   Vote.associate = function(models) {
     // associations can be defined here
+    Vote.belongsTo(models.Movie)
+    Vote.belongsTo(models.Category)
   };
   return Vote;
 };
