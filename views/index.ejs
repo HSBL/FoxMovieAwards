@@ -12,20 +12,13 @@
             </tr>
             </thead>
             <tbody>
-
+                <% for (let category in result[0]) {%>
                     <tr>
-                        <td>Best Picture</td>
-                        <td>EndGame</td>
-                        <td>999</td>
-                        
+                        <td><%= category %></td>
+                        <td><%= result[0][category].winner || 0 %></td>
+                        <td><%= result[0][category].Count || 0 %></td>
                     </tr>
-                    <tr>
-                        <td>Best Soundtrack</td>
-                        <td>Joker</td>
-                        <td>777</td>
-                        
-                    </tr>
-
+                <% } %>
             </tbody>
         </table>
     </div>
