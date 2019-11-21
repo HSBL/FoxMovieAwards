@@ -63,10 +63,18 @@ class VoterController {
     static postEdit(req, res) {
         Voter.update({email: null}, {where: {id: req.params.id}})
         .then(() => {
-            return Voter.update(req.body, {where: {id: req.params.id}})
-        })
-        .then(() => {
-            res.redirect('/');
+
+            bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+                if(err => res.send(err))
+                req.body.password = hash
+                return Voter.update(req.body, {where: {id: req.params.id}})
+                    .then(() => {
+                        res.redirect('/')
+                    })
+                    .catch(err => {
+                        res.render('voter/register', {type: 'error', msg: err})
+                    })
+              });
         })
         .catch(err => res.send(err))
     }
