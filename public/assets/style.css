@@ -128,3 +128,10 @@ body {
   justify-content: center;
   margin: auto;
 }
+
+.profil-pic-large {
+  width:200px; 
+  height:200px;
+  overflow: hidden;
+  margin: auto;
+}
