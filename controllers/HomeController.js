@@ -4,6 +4,7 @@ class HomeController {
     static getHome(req, res) {
         Voter.findOne({where:{isLogin : 1}})
         .then(user =>{
+            // res.send(user)
             if(!user){
                 res.render('index', {logged: false, user : null});
             } else {
